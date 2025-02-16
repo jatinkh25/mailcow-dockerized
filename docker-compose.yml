@@ -212,15 +212,15 @@ services:
       - sogo-web-vol-1:/sogo_web
       - sogo-userdata-backup-vol-1:/sogo_backup
     labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.sogo_sessions.schedule: "@every 1m"
-      ofelia.job-exec.sogo_sessions.command: '/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-tool -v expire-sessions $${SOGO_EXPIRE_SESSION} || exit 0"'
-      ofelia.job-exec.sogo_ealarms.schedule: "@every 1m"
-      ofelia.job-exec.sogo_ealarms.command: '/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-ealarms-notify -p /etc/sogo/cron.creds || exit 0"'
-      ofelia.job-exec.sogo_eautoreply.schedule: "@every 5m"
-      ofelia.job-exec.sogo_eautoreply.command: '/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-tool update-autoreply -p /etc/sogo/cron.creds || exit 0"'
-      ofelia.job-exec.sogo_backup.schedule: "@every 24h"
-      ofelia.job-exec.sogo_backup.command: '/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-tool backup /sogo_backup ALL || exit 0"'
+      0: ofelia.enabled=true
+      1: ofelia.job-exec.sogo_sessions.schedule='@every 1m'
+      2: ofelia.job-exec.sogo_sessions.command='/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-tool -v expire-sessions $${SOGO_EXPIRE_SESSION} || exit 0"'
+      3: ofelia.job-exec.sogo_ealarms.schedule='@every 1m'
+      4: ofelia.job-exec.sogo_ealarms.command='/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-ealarms-notify -p /etc/sogo/cron.creds || exit 0"'
+      5: ofelia.job-exec.sogo_eautoreply.schedule='@every 5m'
+      6: ofelia.job-exec.sogo_eautoreply.command='/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-tool update-autoreply -p /etc/sogo/cron.creds || exit 0"'
+      7: ofelia.job-exec.sogo_backup.schedule='@every 24h'
+      8: ofelia.job-exec.sogo_backup.command='/bin/bash -c "[[ $${MASTER} == y ]] && /usr/local/bin/gosu sogo /usr/sbin/sogo-tool backup /sogo_backup ALL || exit 0"'
     restart: always
     networks:
       mailcow-network:
